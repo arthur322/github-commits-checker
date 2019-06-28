@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import repository from "./repository";
+import user from "./user";
 
 export default combineReducers({
-  repository
+  user
 });
