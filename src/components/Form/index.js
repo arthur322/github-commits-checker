@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetch_user } from "../store/actions/user";
+import { fetch_user } from "../../store/ducks/users";
 
-export default function Form() {
-  const user = useSelector(state => state.user);
+const Form = () => {
+  const users = useSelector(state => state.users);
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
@@ -16,8 +16,9 @@ export default function Form() {
   return (
     <form onSubmit={handleSubmit}>
       <input type="text" name="user" />
-      <button type="submit">{user.loading ? "Loading..." : "Search"}</button>
-      <pre>{JSON.stringify(user)}</pre>
+      <button type="submit">{users.loading ? "Loading..." : "Add"}</button>
     </form>
   );
-}
+};
+
+export default Form;
