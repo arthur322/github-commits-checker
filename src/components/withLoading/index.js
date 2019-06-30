@@ -1,20 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 
 import { Container } from "./styled";
 
-const Loading = () => {
-  const [dots, setDots] = useState(1);
-  const countRef = useRef(dots);
-  countRef.current = dots;
+const withLoading = Component => props => {
+  const isLoading = useSelector(({ users }) => users.loading);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDots(countRef.current <= 3 ? countRef.current + 1 : 1);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  return <Container>Loading{".".repeat(dots)}</Container>;
+  return (
+    <>
+      {isLoading && <Container>Carregando...</Container>}
+      <Component {...props} />
+    </>
+  );
 };
 
-export default Loading;
+export default withLoading;

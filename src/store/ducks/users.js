@@ -4,7 +4,8 @@ import api from "../../service/api";
 export const Types = {
   FETCH_REQ: "FETCH_USER_REQUEST",
   FETCH_SUC: "FETCH_USER_SUCCESS",
-  FETCH_ERR: "FETCH_USER_ERROR"
+  FETCH_ERR: "FETCH_USER_ERROR",
+  GET_SAVED_USERS: "GET_SAVED_USERS"
 };
 
 // Reducers
@@ -26,6 +27,11 @@ const users = (state = INITIAL_STATE, { type, payload }) => {
       };
     case Types.FETCH_ERR:
       return { ...state, loading: false, error: payload.error };
+    case Types.GET_SAVED_USERS:
+      return {
+        ...state,
+        users: payload.users
+      };
     default:
       return state;
   }
@@ -48,6 +54,11 @@ export const fetch_error = error => ({
   payload: { error }
 });
 
+export const get_saved_users = users => ({
+  type: Types.GET_SAVED_USERS,
+  payload: users
+});
+
 // Thunks
 export const fetch_user = username => async dispatch => {
   dispatch(fetch_request());
@@ -58,4 +69,9 @@ export const fetch_user = username => async dispatch => {
   } catch (error) {
     dispatch(fetch_error(error));
   }
+};
+
+export const getStorageUser = () => dispatch => {
+  const users = localstorage.getItem("lsUsers");
+  dispatch(get_saved_users(users));
 };
