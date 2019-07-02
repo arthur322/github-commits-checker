@@ -8,3 +8,10 @@ export const Container = styled.div`
 export const Image = styled.img`
   max-width: 200px;
 `;
+
+export const ItemWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;

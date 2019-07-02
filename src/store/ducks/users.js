@@ -1,77 +1,36 @@
 import api from "../../service/api";
+import { createActions, createReducer } from "reduxsauce";
+import Immutable from "seamless-immutable";
 
-// Types
-export const Types = {
-  FETCH_REQ: "FETCH_USER_REQUEST",
-  FETCH_SUC: "FETCH_USER_SUCCESS",
-  FETCH_ERR: "FETCH_USER_ERROR",
-  GET_SAVED_USERS: "GET_SAVED_USERS"
-};
+// Types and Actions
+export const { Types, Creators } = createActions({
+  fetchRequest: null,
+  fetchSuccess: ["user"],
+  fetchError: ["error"]
+});
 
-// Reducers
-const INITIAL_STATE = {
+// Initial state
+const INITIAL_STATE = Immutable({
   loading: false,
   users: [],
   error: ""
-};
-
-const users = (state = INITIAL_STATE, { type, payload }) => {
-  switch (type) {
-    case Types.FETCH_REQ:
-      return { ...state, loading: true };
-    case Types.FETCH_SUC:
-      return {
-        ...state,
-        loading: false,
-        users: [...state.users, payload.user]
-      };
-    case Types.FETCH_ERR:
-      return { ...state, loading: false, error: payload.error };
-    case Types.GET_SAVED_USERS:
-      return {
-        ...state,
-        users: payload.users
-      };
-    default:
-      return state;
-  }
-};
-
-export default users;
-
-// Actions
-export const fetch_request = () => ({
-  type: Types.FETCH_REQ
 });
 
-export const fetch_success = user => ({
-  type: Types.FETCH_SUC,
-  payload: { user }
-});
-
-export const fetch_error = error => ({
-  type: Types.FETCH_ERR,
-  payload: { error }
-});
-
-export const get_saved_users = users => ({
-  type: Types.GET_SAVED_USERS,
-  payload: users
+export const reducer = createReducer(INITIAL_STATE, {
+  [Types.FETCH_REQUEST]: state => state.merge({ loading: true }),
+  [Types.FETCH_SUCCESS]: (state, { user }) =>
+    state.merge({ loading: false, users: [...state.users, user] }),
+  [Types.FETCH_ERROR]: (state, { error }) =>
+    state.merge({ loading: false, error })
 });
 
 // Thunks
 export const fetch_user = username => async dispatch => {
-  dispatch(fetch_request());
+  dispatch(Creators.fetchRequest());
   try {
-    console.log(username);
     const { data } = await api.get(`/users/${username}`);
-    dispatch(fetch_success(data));
+    dispatch(Creators.fetchSuccess(data));
   } catch (error) {
-    dispatch(fetch_error(error));
+    dispatch(Creators.fetchError(error));
   }
-};
-
-export const getStorageUser = () => dispatch => {
-  const users = localstorage.getItem("lsUsers");
-  dispatch(get_saved_users(users));
 };

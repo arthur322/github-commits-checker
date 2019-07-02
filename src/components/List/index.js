@@ -1,21 +1,21 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { Container, Image } from "./styled";
+import { Container, Image, ItemWrapper } from "./styled";
 
 const List = ({ children }) => {
   const usersList = useSelector(({ users }) => users.users);
 
   return (
     <Container>
-      <ul>
+      <ItemWrapper>
         {usersList.map(user => (
-          <>
+          <div key={user.id}>
             <Image src={user.avatar_url} />
-            <li key={user.id}>{user.name}</li>
-          </>
+            <div>{user.name}</div>
+          </div>
         ))}
-      </ul>
+      </ItemWrapper>
     </Container>
   );
 };
