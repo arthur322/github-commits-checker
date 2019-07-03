@@ -1,6 +1,7 @@
 import api from "../../service/api";
 import { createActions, createReducer } from "reduxsauce";
 import Immutable from "seamless-immutable";
+import { toast } from "react-toastify";
 
 // Types and Actions
 export const { Types, Creators } = createActions({
@@ -25,12 +26,19 @@ export const reducer = createReducer(INITIAL_STATE, {
 });
 
 // Thunks
-export const fetch_user = username => async dispatch => {
+export const fetch_user = username => async (dispatch, getState) => {
   dispatch(Creators.fetchRequest());
+  const { users } = getState().users;
   try {
     const { data } = await api.get(`/users/${username}`);
+    if (users.filter(user => user.id === data.id).length) {
+      toast("Usuário já adicionado!");
+      dispatch(Creators.fetchError(""));
+      return;
+    }
     dispatch(Creators.fetchSuccess(data));
   } catch (error) {
+    toast(error.message);
     dispatch(Creators.fetchError(error));
   }
 };
