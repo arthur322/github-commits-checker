@@ -4,16 +4,20 @@ import Form from "../../components/Form";
 import List from "../../components/List";
 import withLoading from "../../components/withLoading";
 
+import { Container, Wrapper } from "../../elements";
+
 const Main = () => {
   return (
-    <div className="App">
+    <Container className="App">
       <h1>Quem commitou hoje??</h1>
       <h2>
         Adicione usuários do github para monitorar a frequência de commits!
       </h2>
-      <Form />
+      <Wrapper margin="30px">
+        <Form />
+      </Wrapper>
       <List />
-    </div>
+    </Container>
   );
 };
 

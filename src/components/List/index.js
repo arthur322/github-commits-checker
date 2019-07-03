@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { Container, Image, ItemWrapper } from "./styled";
+import { Wrapper } from "../../elements";
 
 const List = ({ children }) => {
   const usersList = useSelector(({ users }) => users.users);
@@ -10,10 +11,10 @@ const List = ({ children }) => {
     <Container>
       <ItemWrapper>
         {usersList.map(user => (
-          <div key={user.id}>
+          <Wrapper key={user.id} margin="5px 15px">
             <Image src={user.avatar_url} />
             <div>{user.name}</div>
-          </div>
+          </Wrapper>
         ))}
       </ItemWrapper>
     </Container>
