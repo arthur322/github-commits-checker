@@ -7,7 +7,8 @@ import { toast } from "react-toastify";
 export const { Types, Creators } = createActions({
   fetchRequest: null,
   fetchSuccess: ["user"],
-  fetchError: ["error"]
+  fetchError: ["error"],
+  removeUser: ["id"]
 });
 
 // Initial state
@@ -18,11 +19,21 @@ const INITIAL_STATE = Immutable({
 });
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.FETCH_REQUEST]: state => state.merge({ loading: true }),
-  [Types.FETCH_SUCCESS]: (state, { user }) =>
-    state.merge({ loading: false, users: [...state.users, user] }),
-  [Types.FETCH_ERROR]: (state, { error }) =>
-    state.merge({ loading: false, error })
+  [Types.FETCH_REQUEST]: state => ({ ...state, loading: true }),
+  [Types.FETCH_SUCCESS]: (state, { user }) => ({
+    ...state,
+    loading: false,
+    users: [...state.users, user]
+  }),
+  [Types.FETCH_ERROR]: (state, { error }) => ({
+    ...state,
+    loading: false,
+    error
+  }),
+  [Types.REMOVE_USER]: (state, { id }) => ({
+    ...state,
+    users: state.users.filter(user => user.id !== id)
+  })
 });
 
 // Thunks
@@ -32,13 +43,13 @@ export const fetch_user = username => async (dispatch, getState) => {
   try {
     const { data } = await api.get(`/users/${username}`);
     if (users.filter(user => user.id === data.id).length) {
-      toast("Usuário já adicionado!");
+      toast.warn("Usuário já adicionado!");
       dispatch(Creators.fetchError(""));
       return;
     }
     dispatch(Creators.fetchSuccess(data));
   } catch (error) {
-    toast(error.message);
+    toast.error(error.message);
     dispatch(Creators.fetchError(error));
   }
 };

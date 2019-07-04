@@ -5,13 +5,13 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
-export const Image = styled.img`
-  max-width: 200px;
-`;
-
 export const ItemWrapper = styled.div`
   flex: 1;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  h4 {
+    margin: 6px 0px;
+  }
 `;

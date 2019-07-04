@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { store } from "./store";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "./store";
 import { toast } from "react-toastify";
 
 import "./styles.css";
@@ -13,7 +14,9 @@ toast.configure();
 function App() {
   return (
     <Provider store={store}>
-      <Main />
+      <PersistGate persistor={persistor} loading={null}>
+        <Main />
+      </PersistGate>
     </Provider>
   );
 }

@@ -10,4 +10,5 @@ export const Container = styled.div`
   top: 0;
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.8);
+  z-index: 99;
 `;

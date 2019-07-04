@@ -5,15 +5,18 @@ import List from "../../components/List";
 import withLoading from "../../components/withLoading";
 
 import { Container, Wrapper } from "../../elements";
+import { ContentWrapper } from "./styled";
 
 const Main = () => {
   return (
     <Container className="App">
-      <h1>Quem commitou hoje??</h1>
-      <h2>
-        Adicione usuários do github para monitorar a frequência de commits!
-      </h2>
-      <Wrapper margin="30px">
+      <ContentWrapper>
+        <h1>Quem commitou hoje??</h1>
+        <h2>
+          Adicione usuários do github para monitorar a frequência de commits!
+        </h2>
+      </ContentWrapper>
+      <Wrapper margin="30px 0px">
         <Form />
       </Wrapper>
       <List />
