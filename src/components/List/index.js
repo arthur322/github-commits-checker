@@ -1,9 +1,9 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
+// import Calendar from 'react-calendar';
 
-import ImagePerson from "../ImagePerson";
-import { Wrapper } from "../../elements";
-import { Container, ItemWrapper } from "./styled";
+import Person from '../Person';
+import { Container, ItemWrapper } from './styled';
 
 const List = ({ children }) => {
   const usersList = useSelector(({ users }) => users.users);
@@ -11,13 +11,13 @@ const List = ({ children }) => {
   return (
     <Container>
       <ItemWrapper>
-        {usersList.map(user => (
-          <Wrapper key={user.id} margin="5px 15px">
-            <ImagePerson src={user.avatar_url} id={user.id} />
-            <h4>{user.name}</h4>
-          </Wrapper>
-        ))}
+        {usersList.length ? (
+          usersList.map(user => <Person key={user.id} user={user} />)
+        ) : (
+          <p>Tente adicionar o primeiro usuário!</p>
+        )}
       </ItemWrapper>
+      {/* <Calendar value={new Date()} /> */}
     </Container>
   );
 };

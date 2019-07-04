@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -10,8 +10,4 @@ export const ItemWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
-  h4 {
-    margin: 6px 0px;
-  }
 `;
