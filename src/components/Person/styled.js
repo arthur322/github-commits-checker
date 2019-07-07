@@ -9,7 +9,8 @@ export const PersonContainer = styled.div`
 export const Image = styled.img`
   max-width: 200px;
   width: 160px;
-  transition: width 1s ease-in-out;
+  ${({ gray }) => gray && 'filter: grayscale(1);'}
+  transition: width 1s ease-in-out, filter 1s ease;
   &.show {
     width: 200px;
   }
