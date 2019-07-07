@@ -1,6 +1,9 @@
 import styled, { keyframes } from 'styled-components';
 
 export const PersonContainer = styled.div`
+  @media (max-width: 600px) {
+    width: 50%;
+  }
   h4 {
     margin: 6px 0px;
   }
@@ -19,7 +22,7 @@ const grow = keyframes`
 
 export const Image = styled.img`
   max-width: 200px;
-  width: 200px;
+  width: 100%;
   border-radius: 15px;
   transition: filter 1s ease;
   animation: 1s ${grow} ease-out;

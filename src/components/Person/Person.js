@@ -9,7 +9,7 @@ const Person = ({ user }) => {
 
   useEffect(() => {
     (async () => {
-      await setTimeout(() => setCommited(true), 3000);
+      // await setTimeout(() => setCommited(true), 3000);
     })()
   }, []);
 

@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 // import Calendar from 'react-calendar';
 
 import Person from '../Person';
-import { Container, ItemWrapper } from './styled';
+import { ItemWrapper } from './styled';
 
-const List = ({ children }) => {
+const List = () => {
   const usersList = useSelector(({ users }) => users.users);
 
   return (
-    <Container>
+    <>
       <ItemWrapper>
         {usersList.length ? (
           usersList.map(user => <Person key={user.id} user={user} />)
@@ -18,7 +18,7 @@ const List = ({ children }) => {
         )}
       </ItemWrapper>
       {/* <Calendar value={new Date()} /> */}
-    </Container>
+    </>
   );
 };
 export default List;
