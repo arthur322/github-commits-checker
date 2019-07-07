@@ -16,6 +16,7 @@ const Form = () => {
     const user = e.target.user.value;
     if (!user.length) return;
     dispatch(fetch_user(user));
+    e.target.user.value = '';
   };
 
   return (

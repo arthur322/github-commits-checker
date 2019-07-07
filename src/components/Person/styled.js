@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const PersonContainer = styled.div`
   h4 {
@@ -6,14 +6,24 @@ export const PersonContainer = styled.div`
   }
 `;
 
+const grow = keyframes`
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
+
 export const Image = styled.img`
   max-width: 200px;
-  width: 160px;
+  width: 200px;
+  border-radius: 15px;
+  transition: filter 1s ease;
+  animation: 1s ${grow} ease-out;
   ${({ gray }) => gray && 'filter: grayscale(1);'}
-  transition: width 1s ease-in-out, filter 1s ease;
-  &.show {
-    width: 200px;
-  }
 `;
 
 export const CloseButton = styled.button.attrs({
