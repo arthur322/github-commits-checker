@@ -11,7 +11,7 @@ const Main = () => {
   return (
     <Container className="App">
       <ContentWrapper>
-        <h1>Quem commitou hoje??</h1>
+        <h1>Quem commitou hoje???</h1>
         <h2>
           Adicione usuários do github para monitorar a frequência de commits!
         </h2>
