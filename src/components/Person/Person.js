@@ -7,11 +7,13 @@ import ImagePerson from './ImagePerson';
 
 const Person = ({ user }) => {
   const [commited, setCommited] = useState(false);
+  const [commits, setCommits] = useState(0);
 
   useEffect(() => {
     (async () => {
-      const { data: total_count } = await api.get(`/search/commits?q=author:${user.login}+author-date:2019-07-08`)
-      if (total_count !== 0) {
+      const { data } = await api.get(`/search/commits?q=author:${user.login}+author-date:2019-07-08`)
+      setCommits(data.total_count);
+      if (data.total_count !== 0) {
         setCommited(true);
       }
     })()
@@ -20,8 +22,8 @@ const Person = ({ user }) => {
   return (
     <PersonContainer>
       <Wrapper key={user.id} margin="5px 15px">
-        <ImagePerson src={user.avatar_url} id={user.id} commited={commited} />
-        <h4>{user.name}</h4>
+        <ImagePerson src={user.avatar_url} id={user.id} commited={!commited} />
+        <h4>{user.name} ({ commits })</h4>
       </Wrapper>
     </PersonContainer>
   );
