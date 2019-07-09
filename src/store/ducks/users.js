@@ -1,4 +1,4 @@
-import api from "../../service/api";
+import api from "service/api";
 import { createActions, createReducer } from "reduxsauce";
 import Immutable from "seamless-immutable";
 import { toast } from "react-toastify";

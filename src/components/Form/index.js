@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetch_user } from "../../store/ducks/users";
+import { fetch_user } from "store/ducks/users";
 
 import { Input, Button, StyledForm } from "./styled";
 

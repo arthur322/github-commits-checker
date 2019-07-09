@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Wrapper } from '../../elements';
+import { Wrapper } from 'elements';
+import api from 'service/api';
 
 import { PersonContainer } from './styled';
 import ImagePerson from './ImagePerson';
@@ -9,7 +10,10 @@ const Person = ({ user }) => {
 
   useEffect(() => {
     (async () => {
-      // await setTimeout(() => setCommited(true), 3000);
+      const { data: total_count } = await api.get(`/search/commits?q=author:${user.login}+author-date:2019-07-08`)
+      if (total_count !== 0) {
+        setCommited(true);
+      }
     })()
   }, []);
 

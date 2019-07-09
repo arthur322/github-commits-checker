@@ -1,10 +1,10 @@
 import React from "react";
 
-import Form from "../../components/Form";
-import List from "../../components/List";
-import withLoading from "../../components/withLoading";
+import Form from "components/Form";
+import List from "components/List";
+import withLoading from "components/withLoading";
 
-import { Container, Wrapper } from "../../elements";
+import { Container, Wrapper } from "elements";
 import { ContentWrapper } from "./styled";
 
 const Main = () => {
