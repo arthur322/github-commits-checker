@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
 export const PersonContainer = styled.div`
   @media (max-width: 600px) {
@@ -7,6 +7,15 @@ export const PersonContainer = styled.div`
   h4 {
     margin: 6px 0px;
   }
+`;
+
+export const PersonWrapper = styled.div`
+  margin: 5px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 200px;
 `;
 
 const grow = keyframes`
@@ -26,11 +35,11 @@ export const Image = styled.img`
   border-radius: 15px;
   transition: filter 1s ease;
   animation: 1s ${grow} ease-out;
-  ${({ gray }) => gray && 'filter: grayscale(1);'}
+  ${({ gray }) => gray && "filter: grayscale(1);"}
 `;
 
 export const CloseButton = styled.button.attrs({
-  title: 'Remover'
+  title: "Remover"
 })`
   cursor: pointer;
   position: absolute;
@@ -47,6 +56,9 @@ export const CloseButton = styled.button.attrs({
 
 export const Container = styled.div`
   position: relative;
+  max-width: 200px;
+  display: flex;
+  justify-content: center;
 
   &:hover ${CloseButton} {
     display: block;
