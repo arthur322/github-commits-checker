@@ -2,6 +2,7 @@ import React from "react";
 
 import Form from "components/Form";
 import List from "components/List";
+import DaySelector from "components/DaySelector";
 import withLoading from "components/withLoading";
 
 import { Container, Wrapper } from "elements";
@@ -19,6 +20,7 @@ const Main = () => {
       <Wrapper margin="30px 0px">
         <Form />
       </Wrapper>
+      <DaySelector />
       <List />
     </Container>
   );

@@ -10,8 +10,8 @@ const Person = ({ user }) => {
 
   useEffect(() => {
     (async () => {
-      var tzoffset = new Date().getTimezoneOffset() * 60000;
-      var todayDate = new Date(Date.now() - tzoffset)
+      const tzoffset = new Date().getTimezoneOffset() * 60000;
+      const todayDate = new Date(Date.now() - tzoffset)
         .toISOString()
         .slice(0, 10);
 
