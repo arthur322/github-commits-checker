@@ -57,8 +57,6 @@ export const CloseButton = styled.button.attrs({
 export const Container = styled.div`
   position: relative;
   max-width: 200px;
-  display: flex;
-  justify-content: center;
 
   &:hover ${CloseButton} {
     display: block;
