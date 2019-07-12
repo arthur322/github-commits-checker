@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { Creators } from 'store/ducks/commits';
 import { Container } from './styled';
 
 const DaySelector = () => {
-  const tzoffset = new Date().getTimezoneOffset() * 60000;
-  const todayDate = new Date(Date.now() - tzoffset)
-    .toISOString()
-    .slice(0, 10);
+  const selectedDay = useSelector(({ commits }) => commits.day);
+  const dispatch = useDispatch();
 
-  const [day, setDay] = useState(todayDate);
+  const handleDateChange = ({target}) => {
+    dispatch(Creators.setSelectedDay(target.value));
+  }
 
   return (
     <Container>
-      Data selecionada: {day}
+      Data selecionada: <input type='date' value={selectedDay} onChange={handleDateChange} />
     </Container>
   );
 }

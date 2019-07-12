@@ -7,7 +7,8 @@ import rootReducer from "./ducks";
 
 const persistConfig = {
   key: "root",
-  storage
+  storage,
+  blacklist: ['commits']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
