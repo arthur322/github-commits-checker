@@ -1,22 +1,23 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { Creators } from 'store/ducks/commits';
-import { Container } from './styled';
+import { Creators } from "store/ducks/commits";
+import { Container, Input } from "./styled";
 
 const DaySelector = () => {
   const selectedDay = useSelector(({ commits }) => commits.day);
   const dispatch = useDispatch();
 
-  const handleDateChange = ({target}) => {
+  const handleDateChange = ({ target }) => {
     dispatch(Creators.setSelectedDay(target.value));
-  }
+  };
 
   return (
     <Container>
-      Data selecionada: <input type='date' value={selectedDay} onChange={handleDateChange} />
+      Data selecionada:{" "}
+      <Input type="date" value={selectedDay} onChange={handleDateChange} />
     </Container>
   );
-}
+};
 
 export default DaySelector;

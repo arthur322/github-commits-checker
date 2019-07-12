@@ -20,7 +20,9 @@ const Main = () => {
       <Wrapper margin="30px 0px">
         <Form />
       </Wrapper>
-      <DaySelector />
+      <Wrapper margin="20px 0px">
+        <DaySelector />
+      </Wrapper>
       <List />
     </Container>
   );

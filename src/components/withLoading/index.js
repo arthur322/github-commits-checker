@@ -4,11 +4,13 @@ import { useSelector } from "react-redux";
 import { Container } from "./styled";
 
 const withLoading = Component => props => {
-  const isLoading = useSelector(({ users }) => users.loading);
+  const usersLoading = useSelector(({ users }) => users.loading);
+  const commitsLoading = useSelector(({ commits }) => commits.loading);
 
   return (
     <>
-      {isLoading && <Container>Carregando...</Container>}
+      {usersLoading && <Container>Carregando usuários e commits...</Container>}
+      {commitsLoading && <Container>Carregando commits...</Container>}
       <Component {...props} />
     </>
   );
