@@ -2,6 +2,7 @@ import React from "react";
 
 import Form from "components/Form";
 import List from "components/List";
+import Footer from "components/Footer";
 import withLoading from "components/withLoading";
 
 import { Container, Wrapper } from "elements";
@@ -20,6 +21,7 @@ const Main = () => {
         <Form />
       </Wrapper>
       <List />
+      <Footer />
     </Container>
   );
 };
