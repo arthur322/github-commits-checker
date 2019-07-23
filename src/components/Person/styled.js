@@ -29,6 +29,15 @@ const grow = keyframes`
   }
 `;
 
+const leaving = keyframes`
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-500%);
+  }
+`;
+
 export const Image = styled.img`
   max-width: 200px;
   width: 100%;
@@ -36,6 +45,10 @@ export const Image = styled.img`
   transition: filter 1s ease;
   animation: 1s ${grow} ease-out;
   ${({ gray }) => gray && "filter: grayscale(1);"}
+
+  &.leaving {
+    animation: 1s ${leaving} cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  }
 `;
 
 export const CloseButton = styled.button.attrs({
